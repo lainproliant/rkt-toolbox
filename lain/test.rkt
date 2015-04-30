@@ -1,16 +1,14 @@
 #lang racket
 
-(provide test-suite)
+(require "data.rkt")
+(require "test.rkt")
 
-(define (test-suite name . tests)
-   (let* ([total (length tests)]
-          [pass (count (lambda (x) (eq? #t x)) tests)]
-          [fail (- total pass)])
-      (if (= total pass)
-         (let ()
-            (printf "[~a] ~a tests PASSED.~n" name total)
-            #t)
-         (let ()
-            (printf "[~a] ~a/~a tests FAILED.~n" name fail total)
-            #f))))
+(test-suite "Struct to JSON tools"
+   ((lambda ()
+      (struct A (a b c) #:transparent)
+      (let* ([obj (A 1 2 3)]
+             [json (struct->json obj)]
+             [obj2 (json->struct A json)]
+             [json2 (struct->json obj2)])
+         (equal? json json2)))))
 

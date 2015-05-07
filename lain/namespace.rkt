@@ -1,7 +1,6 @@
 #lang racket
-
 ;
-; Metaprogramming and dynamic code analysis tools.
+; Namespace and dynamic code analysis tools.
 ; Author: Lain Supe (lainproliant)
 ; Date: Wednesday, April 22 2015
 ;
